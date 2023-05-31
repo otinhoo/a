@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Interface de Pagamento</title>
+  <style>
+    /* Estilos CSS para o formulário */
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input[type="text"],
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Interface de Pagamento</h1>
+  
+  <form id="formPagamento">
+    <label for="nome">Nome Impresso no Cartão:</label>
+    <input type="text" id="nome" name="nome" required>
+
+    <label for="numero_cartao">Número do Cartão:</label>
+    <input type="text" id="numero_cartao" name="numero_cartao" pattern="\d{4}\.\d{4}\.\d{4}\.\d{4}" placeholder="0000.0000.0000.0000" required>
+
+    <label for="validade">Validade (dd/mm):</label>
+    <input type="text" id="validade" name="validade" pattern="\d{2}\\/\d{2}" placeholder="dd/mm" required>
+
+    <label for="cvv">CVV (Código de Segurança):</label>
+    <input type="text" id="cvv" name="cvv" pattern="\d{3}" placeholder="000" required>
+
+    <button type="submit">Realizar Pagamento</button>
+  </form>
+
+  <script>
+    // Evento de envio do formulário
+    document.getElementById("formPagamento").addEventListener("submit", function(event) {
+      event.preventDefault(); // Impede o envio padrão do formulário
+
+      // Obtendo os valores dos campos do formulário
+      var nomeImpresso = document.getElementById("nome").value;
+      var numeroCartao = document.getElementById("numero_cartao").value;
+      var validade = document.getElementById("validade").value;
+      var cvv = document.getElementById("cvv").value;
+
+      // Criando um objeto com as informações
+      var dadosPagamento = {
+        nome: nomeImpresso,
+        numero_cartao: numeroCartao,
+        validade: validade,
+        cvv: cvv
+      };
+
+      // Simulação de armazenamento das informações em uma pasta (requer lógica do servidor)
+      // Aqui, apenas exibimos as informações no console
+      console.log("Dados de pagamento armazenados com sucesso:", dadosPagamento);
+
+      // Limpar os campos do formulário após o envio
+      document.getElementById("formPagamento").reset();
+    });
+  </script>
+</body>
+</html>
